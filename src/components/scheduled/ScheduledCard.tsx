@@ -53,7 +53,7 @@ export default function ScheduledCard({ job, onViewDrafts }: ScheduledCardProps)
     }
   };
 
-  const currentDraft = job.drafts.find(d => d.id === job.selectedDraftId) || job.drafts[0];
+  const currentDraft = job.drafts.find(d => d.draft_number === job.selectedDraftId) || job.drafts[0];
 
   return (
     <div className="flex flex-col bg-[#0A0A0A] border border-white/10 rounded-[16px] p-6 md:p-8 hover:border-[#FF5A00]/50 transition-colors h-full">
@@ -69,7 +69,7 @@ export default function ScheduledCard({ job, onViewDrafts }: ScheduledCardProps)
 
       <div className="flex-1 flex flex-col">
         <p className="font-sans text-[13px] text-[#B3B3B3] uppercase tracking-[0.1em] mb-2 font-medium">
-          {currentDraft?.angleLabel || "Content Draft"}
+          {currentDraft?.angle || "Content Draft"}
         </p>
         <h4 className="font-heading text-[22px] text-white uppercase leading-tight mb-6 line-clamp-3">
           {currentDraft?.title || "Draft"}
