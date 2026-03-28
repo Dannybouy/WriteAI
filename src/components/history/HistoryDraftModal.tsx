@@ -41,7 +41,7 @@ export default function HistoryDraftModal({ job, onClose }: HistoryDraftModalPro
         <div className="w-full md:w-64 border-b md:border-b-0 md:border-r border-white/10 bg-[#0A0A0A] flex flex-row md:flex-col overflow-x-auto md:overflow-y-auto hide-scrollbar shrink-0">
           {drafts.map((draft, idx) => (
             <button
-              key={draft.id}
+              key={draft.draft_number}
               onClick={() => setActiveTab(idx)}
               className={`flex-shrink-0 text-left px-6 py-5 font-heading text-[16px] uppercase tracking-widest transition-colors border-b md:border-b-0 md:border-l-[4px] ${
                 activeTab === idx 
@@ -50,7 +50,7 @@ export default function HistoryDraftModal({ job, onClose }: HistoryDraftModalPro
               }`}
             >
               DRAFT {idx + 1}
-              {job.selectedDraftId === draft.id && (
+              {job.selectedDraftId === draft.draft_number && (
                 <span className="ml-3 font-sans text-[10px] bg-[#FF5A00]/20 text-[#FF5A00] px-2 py-0.5 rounded-full">
                   Selected
                 </span>
@@ -66,23 +66,20 @@ export default function HistoryDraftModal({ job, onClose }: HistoryDraftModalPro
               
               <div className="mb-10 pb-8 border-b border-white/10">
                 <p className="font-sans text-[14px] text-[#FF5A00] uppercase tracking-widest mb-3 font-medium">
-                  {currentDraft.angleLabel}
+                  {currentDraft.angle}
                 </p>
                 <h2 className="font-heading text-4xl text-white uppercase leading-tight mb-4">
                   {currentDraft.title}
                 </h2>
                 <div className="flex items-center gap-4">
-                  <span className="font-sans text-[12px] bg-[#1A1A1A] text-[#B3B3B3] px-3 py-1.5 rounded-full uppercase tracking-widest">
-                    {currentDraft.wordCount} Words
-                  </span>
                   <span className="font-sans text-[12px] bg-black border border-[#FF5A00]/50 text-[#FF5A00] px-3 py-1.5 rounded-full uppercase tracking-widest font-bold">
-                    {currentDraft.primaryKeyword}
+                    {currentDraft.primary_keyword}
                   </span>
                 </div>
               </div>
 
               <div className="opacity-90">
-                <MarkdownRenderer content={currentDraft.content} />
+                <MarkdownRenderer content={currentDraft.body} />
               </div>
             </div>
           ) : (
